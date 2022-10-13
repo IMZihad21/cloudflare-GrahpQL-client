@@ -1,11 +1,9 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const apolloClient = new ApolloClient({
-  uri: "https://cgql.imzihad21.workers.dev/",
+  uri: "https://djangogql.vercel.app/",
+  credentials: "include",
   cache: new InMemoryCache(),
-  headers: {
-    authorization: localStorage.getItem("accessToken") || "",
-  },
 });
 
 export default apolloClient;

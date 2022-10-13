@@ -1,9 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { Box, Typography } from "@mui/material";
-import { GET_ALL_USERS } from "../configs/queries";
+import { GET_USERS } from "../configs/queries";
 
 const Home = () => {
-  const { loading, error, data } = useQuery(GET_ALL_USERS);
+  const { loading, error, data } = useQuery(GET_USERS);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 

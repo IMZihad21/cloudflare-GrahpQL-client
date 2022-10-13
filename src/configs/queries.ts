@@ -19,9 +19,9 @@ export const GET_ALL_USERS = gql`
 `;
 
 export const GET_USERS = gql`
-  query RootQueryType {
-    getOwnUser {
-      name
+  query GetViewer {
+    viewer {
+      username
       email
     }
   }

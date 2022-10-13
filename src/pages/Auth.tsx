@@ -18,11 +18,8 @@ const Auth = () => {
   const [signIn, { loading: signInLoading }] = useMutation(SIGN_IN);
 
   const onSubmit = async (data: Object) => {
-    const { data: { signin } = {} } = await signIn({ variables: { ...data } });
-    if (signin) {
-      localStorage.setItem("accessToken", signin?.accessToken);
-      localStorage.setItem("refreshToken", signin?.refreshToken);
-
+    const { data: res = {} } = await signIn({ variables: { ...data } });
+    if (res) {
       apolloClient.resetStore();
     }
   };
@@ -51,16 +48,12 @@ const Auth = () => {
       )}
       <TextField
         fullWidth
-        label="Email"
+        label="Username"
         variant="outlined"
-        error={Boolean(errors.email)}
-        helperText={!!errors.email && "Email is required"}
-        {...register("email", {
+        error={Boolean(errors.username)}
+        helperText={!!errors.username && "Username is required"}
+        {...register("username", {
           required: true,
-          pattern: {
-            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-            message: "Invalid Email Address",
-          },
         })}
       />
       <TextField
@@ -78,7 +71,7 @@ const Auth = () => {
           pattern: {
             value: newUser
               ? /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-              : /^.{8,50}$/,
+              : /^.{5,50}$/,
             message: newUser
               ? "Password must contain at least one uppercase, one lowercase, one number and one special character"
               : "Password should be at least 8 characters long and not more than 50 characters long",

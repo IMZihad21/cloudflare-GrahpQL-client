@@ -10,16 +10,17 @@ export const SIGN_UP = gql`
 `;
 
 export const SIGN_IN = gql`
-  mutation Mutation($email: String, $password: String) {
-    signin(email: $email, password: $password) {
-      accessToken
-      refreshToken
+  mutation TokenAuth($username: String!, $password: String!) {
+    tokenAuth(username: $username, password: $password) {
+      payload
     }
   }
 `;
 
 export const REFRESH_ACCESS = gql`
-  mutation Mutation($refreshToken: String) {
-    RefreshAccess(refreshToken: $refreshToken)
+  mutation RefreshToken {
+    refreshToken {
+      payload
+    }
   }
 `;
